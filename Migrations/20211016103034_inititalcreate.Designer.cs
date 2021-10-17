@@ -3,14 +3,16 @@ using System;
 using CreatorsSquad.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CreatorsSquad.Migrations
 {
     [DbContext(typeof(NGCoreJWT_DbContext))]
-    partial class NGCoreJWT_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20211016103034_inititalcreate")]
+    partial class inititalcreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
