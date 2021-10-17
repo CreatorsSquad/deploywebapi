@@ -843,15 +843,15 @@ namespace CreatorsSquad.Controllers
                 chkfollower.UpdatedDate = DateTime.Now;
                 chkfollower.IsCheckedOTP = false;
 
-                // await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
-                // await email.EmailNotification(Followername, Convert.ToString(generateotp), "Creators Squad - Sending OTP", 3,"");
+                await email.EmailNotification(Followername, Convert.ToString(generateotp), "Creators Squad - Sending OTP", 3,"");
 
 
                 string numbers = strmobile; // in a comma seperated list
                 string message = "Your OTP Number is " + generateotp + " ( Sent By : Creators Squad )";
 
-                // result = SendviaSMS(numbers, message);
+                result = SendviaSMS(numbers, message);
                 result = "success";
             }
             else
