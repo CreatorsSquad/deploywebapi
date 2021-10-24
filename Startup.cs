@@ -38,8 +38,16 @@ namespace CreatorsSquad
             var emailconfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
             services.AddSingleton(emailconfig);
 
-            string mySqlConnectionStr = Configuration.GetConnectionString("angularcoreaws");
-            services.AddDbContextPool<NGCoreJWT_DbContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
+            string connString = string.Empty;
+            var server = Configuration["MYSQL_SERVICE_HOST"] ?? "localhost";
+            var port = Configuration["MYSQL_SERVICE_PORT"] ?? "3306";
+            var user = Configuration["MYSQL_USER"] ?? "root";
+            var password = Configuration["MYSQL_PASSWORD"] ?? "wWbFync5fEazeqRg";
+            var database = Configuration["MYSQL_DATABASE"] ?? "contentsqd_db";
+
+            connString = $"Server={server};Port={port};Database={database};User ID={user};Password={password}";
+
+            services.AddDbContextPool<NGCoreJWT_DbContext>(options => options.UseMySql(connString, ServerVersion.AutoDetect(connString)));
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {
