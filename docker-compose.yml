@@ -6,9 +6,9 @@ services:
     environment:
       MYSQL_HOST_SERVER: "db"
       MYSQL_HOST_PORT: "3306"
-      MYSQL_DATABASE: contentsqd_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: wWbFync5fEazeqRg
+      MYSQL_DATABASE: "contentsqd_db"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "wWbFync5fEazeqRg"
     networks:
       - mynetwork
     build:
@@ -16,17 +16,15 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db      
-    ports:
-      - 443:443
-      - 80:80 #optional
-      - 8080:5000
+    ports:      
+      - 80:80      
   db:
-    image: mysql:8.0.26
+    image: mysql:8.0
     environment:
       MYSQL_RANDOM_ROOT_PASSORD: 1
-      MYSQL_DATABASE: contentsqd_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: wWbFync5fEazeqRg
+      MYSQL_DATABASE: "contentsqd_db"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "wWbFync5fEazeqRg"
     networks:
       - mynetwork
     volumes:
