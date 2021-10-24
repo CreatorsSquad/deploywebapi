@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  webcreatorsquad:
+    image: ${DOCKER_REGISTRY-}saimuthu2020/webcreatorsquad
+    environment:
+      MYSQL_HOST_SERVER: "db"
+      MYSQL_HOST_PORT: "3306"
+      MYSQL_DATABASE: contentsqd_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: wWbFync5fEazeqRg
+    networks:
+      - mynetwork
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db      
+    ports:
+      - 443:443
+      - 80:80 #optional
+      - 8080:5000
+  db:
+    image: mysql:8.0.26
+    environment:
+      MYSQL_RANDOM_ROOT_PASSORD: 1
+      MYSQL_DATABASE: contentsqd_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: wWbFync5fEazeqRg
+    networks:
+      - mynetwork
+    volumes:
+      - dbdata:/var/lib/mysql
+    restart: always
+volumes:
+  dbdata:
+networks:
+  mynetwork:
+    driver: bridge
