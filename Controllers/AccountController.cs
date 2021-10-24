@@ -845,13 +845,13 @@ namespace CreatorsSquad.Controllers
 
                 await _context.SaveChangesAsync();
 
-                await email.EmailNotification(Followername, Convert.ToString(generateotp), "Creators Squad - Sending OTP", 3,"");
+                await EmailNotification(Followername, Convert.ToString(generateotp), "Creators Squad - Sending OTP", 3,"");
 
 
                 string numbers = strmobile; // in a comma seperated list
                 string message = "Your OTP Number is " + generateotp + " ( Sent By : Creators Squad )";
 
-                result = SendviaSMS(numbers, message);
+                result = viasms.SendviaSMS(numbers, message);
                 result = "success";
             }
             else
